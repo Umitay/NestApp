@@ -12,12 +12,10 @@ import {
   Res,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
+import { ObjectId } from 'mongoose';
 import { CreateExerciseDto } from './dto/create-exercise.dto';
 import { ExercisesService } from './exercises.service';
-interface Exercise {
-  id: string;
-  tenseId: string;
-}
+import { Exercise } from './mongoSchema/exercise.schema';
 
 @Controller('exercises')
 export class ExercisesController {
@@ -28,18 +26,18 @@ export class ExercisesController {
     @Res() res: Response,
     @Query('limit') limit: number,
     @Query('page') page: number,
-  ): Array<Exercise> {
+  ): Promise<Exercise[]> {
     return this.exercisesServise.getAll(page, limit);
   }
   @Get(':id')
-  getOne(@Param('id') id: number): Exercise {
+  getOne(@Param('id') id: ObjectId): Promise<Exercise> {
     return this.exercisesServise.getById(id);
   }
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
   @Header('Cache-Control', 'none')
-  create(@Body() createExercise: CreateExerciseDto): Exercise {
+  create(@Body() createExercise: CreateExerciseDto): Promise<Exercise> {
     return this.exercisesServise.create(createExercise);
   }
 }

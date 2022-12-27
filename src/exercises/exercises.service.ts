@@ -1,21 +1,24 @@
+import { Model, ObjectId } from 'mongoose';
 import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+
 import { CreateExerciseDto } from './dto/create-exercise.dto';
-interface Exercise {
-  id: number;
-  tenseId: number;
-}
+import { Exercise, ExerciseDocument } from './mongoSchema/exercise.schema';
+
 @Injectable()
 export class ExercisesService {
-  private exercises: Array<Exercise> = [];
-  getAll(page: number, limit: number): Array<Exercise> {
-    return this.exercises;
+  constructor(
+    @InjectModel(Exercise.name) private exerciseModel: Model<ExerciseDocument>,
+  ) {}
+
+  getAll(page: number, limit: number): Promise<Exercise[]> {
+    return this.exerciseModel.find().exec();
   }
-  getById(id: number): any {
-    return this.exercises.find((e) => e.id == id);
+  getById(id: ObjectId): any {
+    return this.exerciseModel.findById(id);
   }
-  create(createExercise: CreateExerciseDto): Exercise {
-    const exercise = { ...createExercise, id: Date.now() };
-    this.exercises.push(exercise);
-    return exercise;
+  create(createExerciseDto: CreateExerciseDto): Promise<Exercise> {
+    const createdExercise = new this.exerciseModel(createExerciseDto);
+    return createdExercise.save();
   }
 }
