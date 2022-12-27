@@ -1,5 +1,5 @@
 export class CreateExerciseDto {
-  readonly tenseId: string;
+  readonly tenseId: number;
   name: string;
   description: string;
   q: string;

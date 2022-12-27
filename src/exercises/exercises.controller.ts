@@ -1,18 +1,45 @@
-import { Controller, Post, Body, Query, Get, Param } from '@nestjs/common';
+import {
+  Controller,
+  Header,
+  HttpCode,
+  Post,
+  Body,
+  Query,
+  Get,
+  Param,
+  HttpStatus,
+  Req,
+  Res,
+} from '@nestjs/common';
+import { Request, Response } from 'express';
 import { CreateExerciseDto } from './dto/create-exercise.dto';
+import { ExercisesService } from './exercises.service';
+interface Exercise {
+  id: string;
+  tenseId: string;
+}
+
 @Controller('exercises')
 export class ExercisesController {
+  constructor(private readonly exercisesServise: ExercisesService) {}
   @Get()
-  getAll(@Query('limit') limit: string, @Query('page') page: string): string {
-    return `All Exercises:1,2,3 from ${page} to ${limit} `;
+  getAll(
+    @Req() req: Request,
+    @Res() res: Response,
+    @Query('limit') limit: number,
+    @Query('page') page: number,
+  ): Array<Exercise> {
+    return this.exercisesServise.getAll(page, limit);
   }
   @Get(':id')
-  getOne(@Param('id') id: string): string {
-    return `Exercise: ${id}`;
+  getOne(@Param('id') id: number): Exercise {
+    return this.exercisesServise.getById(id);
   }
 
   @Post()
-  create(@Body() createExercise: CreateExerciseDto) {
-    return 'This action adds a new exercise';
+  @HttpCode(HttpStatus.CREATED)
+  @Header('Cache-Control', 'none')
+  create(@Body() createExercise: CreateExerciseDto): Exercise {
+    return this.exercisesServise.create(createExercise);
   }
 }
