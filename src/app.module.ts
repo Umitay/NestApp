@@ -8,7 +8,7 @@ import { ExercisesModule } from './exercises/exercises.module';
   imports: [
     ExercisesModule,
     MongooseModule.forRoot(
-      'mongodb+srv://umi:123698745@cluster0.cu2td6y.mongodb.net/?retryWrites=true&w=majority',
+      'mongodb+srv://umi:123698745@cluster0.cu2td6y.mongodb.net/nest?retryWrites=true&w=majority',
     ),
   ],
   controllers: [AppController],

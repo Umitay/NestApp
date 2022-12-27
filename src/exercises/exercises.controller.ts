@@ -38,6 +38,8 @@ export class ExercisesController {
   @HttpCode(HttpStatus.CREATED)
   @Header('Cache-Control', 'none')
   create(@Body() createExercise: CreateExerciseDto): Promise<Exercise> {
+    console.log(createExercise);
+
     return this.exercisesServise.create(createExercise);
   }
 }

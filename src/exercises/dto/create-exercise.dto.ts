@@ -1,7 +1,7 @@
 import { ObjectId } from 'mongoose';
 
 export class CreateExerciseDto {
-  tenseId: ObjectId;
-  name: string;
+  tenseId: string;
+  title: string;
   description: string;
 }
