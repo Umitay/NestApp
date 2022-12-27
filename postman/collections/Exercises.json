@@ -1,0 +1,63 @@
+{
+	"info": {
+		"_postman_id": "7be0de2e-43be-4ad6-bd48-118b3564e2d3",
+		"name": "Exercises",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "16101274-7be0de2e-43be-4ad6-bd48-118b3564e2d3"
+	},
+	"item": [
+		{
+			"name": "Exercises",
+			"id": "06094e3f-68b0-4b0f-8135-b1408410b3ce",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/exercises?page=0&limit=10",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"exercises"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "limit",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Exercise By ID",
+			"id": "a8a62165-d84c-4064-a9f9-7048ca8f920c",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/exercises/10",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"exercises",
+						"10"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
