@@ -1,45 +1,60 @@
 import {
   Controller,
-  Header,
-  HttpCode,
+  Get,
   Post,
   Body,
-  Query,
-  Get,
+  Patch,
   Param,
+  Delete,
+  Header,
+  HttpCode,
+  Query,
   HttpStatus,
   Req,
   Res,
 } from '@nestjs/common';
-import { Request, Response } from 'express';
-import { ObjectId } from 'mongoose';
-import { CreateExerciseDto } from './dto/create-exercise.dto';
 import { ExercisesService } from './exercises.service';
-import { Exercise } from './mongoSchema/exercise.schema';
+import { CreateExerciseDto } from './dto/create-exercise.dto';
+import { UpdateExerciseDto } from './dto/update-exercise.dto';
+
+import { Exercise } from './entities/exercise.entity';
 
 @Controller('exercises')
 export class ExercisesController {
-  constructor(private readonly exercisesServise: ExercisesService) {}
+  constructor(private readonly exercisesService: ExercisesService) {}
+
+  @Post()
+  @HttpCode(HttpStatus.CREATED)
+  @Header('Cache-Control', 'none')
+  create(@Body() createExerciseDto: CreateExerciseDto): Promise<Exercise | {}> {
+    return this.exercisesService.create(createExerciseDto);
+  }
+
   @Get()
-  getAll(
+  findAll(
     @Req() req: Request,
     @Res() res: Response,
     @Query('limit') limit: number,
     @Query('page') page: number,
   ): Promise<Exercise[]> {
-    return this.exercisesServise.getAll(page, limit);
+    return this.exercisesService.findAll(page, limit);
   }
+
   @Get(':id')
-  getOne(@Param('id') id: ObjectId): Promise<Exercise> {
-    return this.exercisesServise.getById(id);
+  findOne(@Param('id') id: string): Promise<Exercise> {
+    return this.exercisesService.findOne(+id);
   }
 
-  @Post()
-  @HttpCode(HttpStatus.CREATED)
-  @Header('Cache-Control', 'none')
-  create(@Body() createExercise: CreateExerciseDto): Promise<Exercise> {
-    console.log(createExercise);
+  @Patch(':id')
+  update(
+    @Param('id') id: string,
+    @Body() updateExerciseDto: UpdateExerciseDto,
+  ): Promise<Exercise> {
+    return this.exercisesService.update(+id, updateExerciseDto);
+  }
 
-    return this.exercisesServise.create(createExercise);
+  @Delete(':id')
+  remove(@Param('id') id: string): Promise<Exercise> {
+    return this.exercisesService.remove(+id);
   }
 }
