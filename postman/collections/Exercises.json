@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "Exercises",
+			"name": "List",
 			"id": "06094e3f-68b0-4b0f-8135-b1408410b3ce",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -38,7 +38,7 @@
 			"response": []
 		},
 		{
-			"name": "Exercise By ID",
+			"name": "By ID",
 			"id": "a8a62165-d84c-4064-a9f9-7048ca8f920c",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -54,6 +54,36 @@
 					"path": [
 						"exercises",
 						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create",
+			"id": "8edc6e88-1bd4-4ffd-b7b1-11e9743466e1",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"sug\": \"past-progresive\",\r\n    \"title\": \"Past progresive\",\r\n    \"description\": \"description\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/exercises",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"exercises"
 					]
 				}
 			},
