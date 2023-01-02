@@ -6,6 +6,7 @@ id = 4802e44f-ad08-4aba-a3da-25e434f75909
 [relations.collections]
 rootDirectory = postman/collections
 files[] = {"id":"16101274-7be0de2e-43be-4ad6-bd48-118b3564e2d3","path":"Exercises.json","metaData":{}}
+files[] = {"id":"16101274-4bc1d120-aa13-44fe-bb01-6feeb8f39f5e","path":"Tenses.json","metaData":{}}
 
 [relations.collections.metaData]
 
