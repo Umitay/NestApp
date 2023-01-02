@@ -31,13 +31,13 @@ export class ExercisesController {
   }
 
   @Get()
-  findAll(
+  async findAll(
     @Req() req: Request,
     @Res() res: Response,
     @Query('limit') limit: number,
     @Query('page') page: number,
-  ): Promise<Exercise[]> {
-    return this.exercisesService.findAll(page, limit);
+  ) {
+    return [{ title: 'past' }]; // await this.exercisesService.findAll(page, limit);
   }
 
   @Get(':id')

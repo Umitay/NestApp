@@ -14,12 +14,12 @@ export class TensesService {
     return createdTense.save();
   }
 
-  findAll(page: number, limit: number): Promise<Tense[]> {
-    return this.model.find().exec();
+  async findAll(page: number, limit: number): Promise<Tense[]> {
+    return []; //await this.model.find().exec();
   }
 
-  findOne(id: number): any {
-    return this.model.findById(id);
+  findOne(sug: string): any {
+    return this.model.findOne({ sug });
   }
 
   update(id: number, updateTenseDto: UpdateTenseDto) {

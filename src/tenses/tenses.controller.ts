@@ -28,18 +28,18 @@ export class TensesController {
   }
 
   @Get()
-  findAll(
+  async findAll(
     @Req() req: Request,
     @Res() res: Response,
     @Query('limit') limit: number,
     @Query('page') page: number,
   ): Promise<Tense[]> {
-    return this.tensesService.findAll(page, limit);
+    return await this.tensesService.findAll(page, limit);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string): Promise<Tense> {
-    return this.tensesService.findOne(+id);
+  @Get(':sug')
+  findOne(@Param('sug') sug: string): Promise<Tense> {
+    return this.tensesService.findOne(sug);
   }
 
   @Patch(':id')
