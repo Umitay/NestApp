@@ -39,7 +39,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tenseId\": \"ObjectId\",\r\n    \"title\": \"title\",\r\n    \"description\": \"description\"\r\n}",
+					"raw": "{\r\n    \"sug\": \"past-progresive2\",\r\n    \"title\": \"Past progresive2\",\r\n    \"description\": \"description\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -59,7 +59,7 @@
 			"response": []
 		},
 		{
-			"name": "List Copy",
+			"name": "List",
 			"id": "0fd035ec-1c61-448b-8a3d-076577bb3a4b",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
