@@ -10,12 +10,20 @@ import { string } from 'joi';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(
-      'mongodb+srv://umi:123698745@cluster0.cu2td6y.mongodb.net/nest?retryWrites=true&w=majority',
-    ),
+    ConfigModule.forRoot({
+      envFilePath: '.development.env',
+      isGlobal: true,
+    }),
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: async (config: ConfigService) => ({
+        uri: config.get<string>('MONGODB_URI'), // Loaded from .ENV
+      }),
+    }),
 
     TensesModule,
-    //ExercisesModule,
+    ExercisesModule,
     // UsersModule,
   ],
   controllers: [AppController],
@@ -35,6 +43,9 @@ import { string } from 'joi';
         uri: config.get<string>('MONGODB_URI'), // Loaded from .ENV
       }),
     }),
+     MongooseModule.forRoot(
+      'mongodb+srv://umi:123698745@cluster0.cu2td6y.mongodb.net/nest?retryWrites=true&w=majority',
+    ),
     ExercisesModule,
     TensesModule,
     // UsersModule,
