@@ -1,9 +1,12 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { ObjectId, Document } from 'mongoose';
-import * as mongoose from 'mongoose';
-export type TenseDocument = Tense & Document;
+import { HydratedDocument } from 'mongoose';
+export type TenseDocument = HydratedDocument<Tense>;
 
+@Schema()
 export class Tense {
+  @Prop({ required: true })
+  sug: string;
+
   @Prop({ required: true })
   title: string;
 

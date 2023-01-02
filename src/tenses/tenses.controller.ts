@@ -29,8 +29,6 @@ export class TensesController {
 
   @Get()
   async findAll(
-    @Req() req: Request,
-    @Res() res: Response,
     @Query('limit') limit: number,
     @Query('page') page: number,
   ): Promise<Tense[]> {

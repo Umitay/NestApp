@@ -13,8 +13,9 @@ import { string } from 'joi';
     MongooseModule.forRoot(
       'mongodb+srv://umi:123698745@cluster0.cu2td6y.mongodb.net/nest?retryWrites=true&w=majority',
     ),
-    ExercisesModule,
+
     TensesModule,
+    //ExercisesModule,
     // UsersModule,
   ],
   controllers: [AppController],

@@ -26,18 +26,16 @@ export class ExercisesController {
   @Post()
   @HttpCode(HttpStatus.CREATED)
   @Header('Cache-Control', 'none')
-  create(@Body() createExerciseDto: CreateExerciseDto): Promise<Exercise | {}> {
+  create(@Body() createExerciseDto: CreateExerciseDto): Promise<Exercise> {
     return this.exercisesService.create(createExerciseDto);
   }
 
   @Get()
   async findAll(
-    @Req() req: Request,
-    @Res() res: Response,
     @Query('limit') limit: number,
     @Query('page') page: number,
-  ) {
-    return [{ title: 'past' }]; // await this.exercisesService.findAll(page, limit);
+  ): Promise<Exercise[]> {
+    return await this.exercisesService.findAll(page, limit);
   }
 
   @Get(':id')

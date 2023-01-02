@@ -15,7 +15,7 @@ export class TensesService {
   }
 
   async findAll(page: number, limit: number): Promise<Tense[]> {
-    return []; //await this.model.find().exec();
+    return this.model.find();
   }
 
   findOne(sug: string): any {
