@@ -1,7 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model, ObjectId } from 'mongoose';
 
+import { Model, Types } from 'mongoose';
+import mongoose from 'mongoose';
+
+export const ObjectId = mongoose.Types.ObjectId;
 import { CreateExerciseDto } from './dto/create-exercise.dto';
 import { UpdateExerciseDto } from './dto/update-exercise.dto';
 
@@ -18,11 +21,12 @@ export class ExercisesService {
     return createdExercise.save();
   }
 
-  findAll(page: number, limit: number): Promise<Exercise[]> {
-    return this.model.find().exec();
+  findAll(tenseId: string, level: string): Promise<Exercise[]> {
+    const query: any = { tenseId: new Types.ObjectId(tenseId), level };
+    return this.model.find(query).exec();
   }
 
-  findOne(id: number): any {
+  findOne(id: string): any {
     return this.model.findById(id);
   }
 

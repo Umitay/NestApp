@@ -16,6 +16,13 @@ export class Tense {
   @Prop()
   description: string;
   @Prop()
+  affirmativeForm: string;
+  @Prop()
+  negativeForm: string;
+  @Prop()
+  questionForm: string;
+
+  @Prop()
   timeExpressions: string;
   @Prop()
   note: string;

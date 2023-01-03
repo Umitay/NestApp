@@ -32,15 +32,15 @@ export class ExercisesController {
 
   @Get()
   async findAll(
-    @Query('limit') limit: number,
-    @Query('page') page: number,
+    @Query('tenseId') tenseId: string,
+    @Query('level') level: string,
   ): Promise<Exercise[]> {
-    return await this.exercisesService.findAll(page, limit);
+    return await this.exercisesService.findAll(tenseId, level);
   }
 
   @Get(':id')
   findOne(@Param('id') id: string): Promise<Exercise> {
-    return this.exercisesService.findOne(+id);
+    return this.exercisesService.findOne(id);
   }
 
   @Patch(':id')
