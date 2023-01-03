@@ -3,4 +3,6 @@ export class CreateTenseDto {
   title: string;
   summary: string;
   description: string;
+  timeExpressions: string;
+  note: string;
 }
