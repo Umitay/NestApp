@@ -15,5 +15,9 @@ export class Tense {
 
   @Prop()
   description: string;
+  @Prop()
+  timeExpressions: string;
+  @Prop()
+  note: string;
 }
 export const TenseSchema = SchemaFactory.createForClass(Tense);
